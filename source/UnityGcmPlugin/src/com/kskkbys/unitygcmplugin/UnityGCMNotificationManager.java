@@ -25,7 +25,7 @@ public class UnityGCMNotificationManager {
 	// Request code for launching unity activity
 	private static final int REQUEST_CODE_UNITY_ACTIVITY = 1001;
 	// ID of notification
-	private static final int ID_NOTIFICATION = 1;
+	public static final int DEFAULT_NOTIFICATION_ID = 1;
 	
 	/**
 	 * Show notification view in status bar
@@ -34,7 +34,7 @@ public class UnityGCMNotificationManager {
 	 * @param contentText
 	 * @param ticker
 	 */
-	public static void showNotification(Context context, String contentTitle, String contentText, String ticker) {
+	public static void showNotification(Context context, String contentTitle, String contentText, String ticker, int notificationId) {
 		Log.v(TAG, "showNotification");
 		
 		// Intent 
@@ -56,7 +56,7 @@ public class UnityGCMNotificationManager {
 		builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
 		
 		NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-		nm.notify(ID_NOTIFICATION, builder.build());
+		nm.notify(notificationId, builder.build());
 	}
 	
 	/**

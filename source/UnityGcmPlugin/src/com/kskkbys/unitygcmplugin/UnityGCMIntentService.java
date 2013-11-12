@@ -72,7 +72,13 @@ public class UnityGCMIntentService extends GCMBaseIntentService {
 			} catch (JSONException e) {
 				ticker = contentTitle; // If no ticker specified, use title
 			}
-			UnityGCMNotificationManager.showNotification(this, contentTitle, contentText, ticker);
+			int notificationId;
+			try {
+				notificationId = Integer.parseInt(json.getString("id"));
+			} catch (JSONException e) {
+				notificationId = UnityGCMNotificationManager.DEFAULT_NOTIFICATION_ID; // If no id specified, use default
+			}
+			UnityGCMNotificationManager.showNotification(this, contentTitle, contentText, ticker, notificationId);
 		} catch (JSONException e) {
 			// Title is mandatory, do not display in status bar
 			Log.v(TAG, "No content_title specified, not showing anything in Android status bar");
