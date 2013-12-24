@@ -80,5 +80,10 @@ public class UnityGCMRegister {
 		Log.v(TAG, "setNotificationsEnabled: " + enabled);
 		Util.notificationsEnabled = enabled;
 	}
+	
+	public static void setNotificationsSound(boolean enabled) {
+		Log.v(TAG, "setNotificationsSound: " + enabled);
+		Util.notificationsSoundEnabled = enabled;
+	}
 
 }

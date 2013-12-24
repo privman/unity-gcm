@@ -53,7 +53,11 @@ public class UnityGCMNotificationManager {
 		Resources res = context.getResources();
 		builder.setSmallIcon(res.getIdentifier("app_icon", "drawable", context.getPackageName()));
 		
-		builder.setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS);
+		int defaults = Notification.DEFAULT_VIBRATE | Notification.DEFAULT_LIGHTS;
+		if (Util.notificationsSoundEnabled) {
+			defaults |= Notification.DEFAULT_SOUND;
+		}
+		builder.setDefaults(defaults);
 		
 		NotificationManager nm = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
 		nm.notify(notificationId, builder.build());
