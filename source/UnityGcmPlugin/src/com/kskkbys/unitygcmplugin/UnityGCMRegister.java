@@ -6,6 +6,7 @@ import com.unity3d.player.UnityPlayer;
 import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.content.SharedPreferences;
 
 /**
  * Plugin class of GCMRegister
@@ -85,7 +86,11 @@ public class UnityGCMRegister {
 	
 	public static void setNotificationsSound(boolean enabled) {
 		Log.v(TAG, "setNotificationsSound: " + enabled);
-		Util.notificationsSoundEnabled = enabled;
+		Activity activity = UnityPlayer.currentActivity;
+		SharedPreferences settings = activity.getSharedPreferences("Notifications", 0);
+		SharedPreferences.Editor editor = settings.edit();
+		editor.putBoolean("soundEnabled", enabled);
+		editor.apply();
 	}
 
 }

@@ -11,7 +11,6 @@ public class Util {
 	private static final String RECEIVER_NAME = "GCMReceiver";
 	
 	public static boolean notificationsEnabled = true; 
-	public static boolean notificationsSoundEnabled = true; 
 
 	/**
 	 * Send message to GameObject of Unity
