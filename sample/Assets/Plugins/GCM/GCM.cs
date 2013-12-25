@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+#if UNITY_ANDROID
 /// <summary>
 /// Android GCM Plugin
 /// </summary>
@@ -161,17 +162,28 @@ public class GCM {
  }
  
     /// <summary>
- 	/// Toggle status bar notifications on or off
-	/// </summary>
- public static void SetNotificationsEnabled (bool enabled) {
-     if (Application.platform == RuntimePlatform.Android) {
-         using (AndroidJavaClass cls = new AndroidJavaClass (CLASS_NAME)) {
-             cls.CallStatic ("setNotificationsEnabled", enabled);
-         }
-     }
- }
- 
-	/// <summary>
+    /// Toggle status bar notifications on or off. Default is on.
+    /// </summary>
+    public static void SetNotificationsEnabled (bool enabled) {
+        if (Application.platform == RuntimePlatform.Android) {
+            using (AndroidJavaClass cls = new AndroidJavaClass (CLASS_NAME)) {
+                cls.CallStatic ("setNotificationsEnabled", enabled);
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Toggle notification sound on or off. Has no effect if SetNotificationsEnabled is off. Default is on.
+    /// </summary>
+    public static void SetNotificationsSoundEnabled (bool enabled) {
+        if (Application.platform == RuntimePlatform.Android) {
+            using (AndroidJavaClass cls = new AndroidJavaClass (CLASS_NAME)) {
+                cls.CallStatic ("setNotificationsSound", enabled);
+            }
+        }
+    }
+    
+    /// <summary>
 	/// Sets the error callback.
 	/// </summary>
 	/// <param name='onError'>
@@ -217,3 +229,4 @@ public class GCM {
 		GCMReceiver._onDeleteMessages = onDeleteMessages;
 	}
 }
+#endif
