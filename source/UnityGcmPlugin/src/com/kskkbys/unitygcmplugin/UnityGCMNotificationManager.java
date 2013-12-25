@@ -1,7 +1,7 @@
 package com.kskkbys.unitygcmplugin;
 
 import com.unity3d.player.UnityPlayer;
-import com.unity3d.player.UnityPlayerProxyActivity;
+import com.prime31.UnityPlayerNativeActivity;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -38,7 +38,7 @@ public class UnityGCMNotificationManager {
 		Log.v(TAG, "showNotification");
 		
 		// Intent 
-		Intent intent = new Intent(context, UnityPlayerProxyActivity.class);
+		Intent intent = new Intent(context, UnityPlayerNativeActivity.class);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, REQUEST_CODE_UNITY_ACTIVITY, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		
 		//　Show notification in status bar
