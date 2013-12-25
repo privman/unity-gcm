@@ -14,6 +14,8 @@ import android.util.Log;
  */
 public class UnityGCMRegister {
 
+	public static String[] senderIdArray;
+	
 	private static final String TAG = UnityGCMRegister.class.getSimpleName();
 
 	public static void register(final String senderIds) {
@@ -23,8 +25,8 @@ public class UnityGCMRegister {
 		Activity activity = UnityPlayer.currentActivity;
 		GCMRegistrar.checkDevice(activity);
 		GCMRegistrar.checkManifest(activity);
-		String[] senderIdArray = senderIds.split(",");
-		GCMRegistrar.register(activity, senderIdArray);
+		UnityGCMRegister.senderIdArray = senderIds.split(",");
+		GCMRegistrar.register(activity, UnityGCMRegister.senderIdArray);
 	}
 	
 	public static void unregister() {
